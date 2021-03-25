@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register/Login</title>
+    <style>
+        .wrapper {
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <p style="font-size: larger; font-weight: 900;"> Registration </p>
+
+        <form action="/register" method="post">
+            {% csrf_token %}
+
+            <label for="first_name">First Name</label>
+            <input type="text" name="first_name" id="first_name">
+            <br>
+            <br>
+            <label for="last_name">Last Name</label>
+            <input type="text" name="last_name" id="last_name">
+            <br>
+            <br>
+            <label for="birth_date">Birth Date</label>
+            <input type="date" name="birth_date" id="birth_date">
+            <br>
+            <br>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+            <br>
+            <br>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <br>
+            <br>
+            <label for="confirm_pw">Confirm PW</label>
+            <input type="password" name="confirm_pw" id="confirm_pw">
+            <br>
+            <br>
+            <button type="submit">Register</button>
+
+        </form>
+
+        <p style="font-size: larger; font-weight: 900;"> Login </p>
+
+        <form action="/success" method="post">
+            {% csrf_token %}
+            <label for="email">Email</label>
+            <input type="email" name="Email" id="email">
+            <br>
+            <br>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <br>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"
+         {% endif %} style="color: red;">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+
+</html>
